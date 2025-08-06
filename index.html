@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Candidate Matcher</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #f0f4f8, #e2eafc);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .card {
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .btn-primary {
+      background-color: #0056d2;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #0041a8;
+    }
+    h2 {
+      color: #003c82;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h2>💼 AI Candidate Recommendation Engine</h2>
+      <p class="text-muted">Match resumes with job descriptions using AI and cosine similarity</p>
+    </div>
+
+    <div class="card p-4">
+      <form method="POST" action="/match" enctype="multipart/form-data">
+        <div class="mb-4">
+          <label for="job_description" class="form-label fw-semibold">Job Description</label>
+          <textarea class="form-control" id="job_description" name="job_description" rows="6" placeholder="Paste the job description here..." required></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="resumes" class="form-label fw-semibold">Upload Resumes (PDF/TXT)</label>
+          <input class="form-control" type="file" name="resumes" id="resumes" multiple required accept=".pdf,.txt">
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">🔍 Match Candidates</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

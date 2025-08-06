@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Top Matches</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #f5f7fa, #dce8fc);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .candidate-card {
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.2s ease;
+    }
+    .candidate-card:hover {
+      transform: scale(1.015);
+    }
+    .badge {
+      font-size: 0.9rem;
+    }
+    h2 {
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="text-center mb-4">
+      <h2>🎯 Top Matching Candidates</h2>
+      <p class="text-muted">Ranked by cosine similarity to the job description</p>
+    </div>
+
+    <div class="row">
+      {% for r in results %}
+        <div class="col-md-6 mb-4">
+          <div class="card candidate-card p-3">
+            <div class="card-body">
+              <h5 class="card-title">{{ r.name }}</h5>
+              <p>
+                <span class="badge bg-{{ 'success' if r.score > 80 else 'warning' if r.score > 60 else 'secondary' }}">
+                  Similarity: {{ r.score }}%
+                </span>
+              </p>
+              <div class="progress mb-3" style="height: 8px;">
+                <div class="progress-bar bg-info" role="progressbar" style="width: {{ r.score }}%;" aria-valuenow="{{ r.score }}" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <p><strong>AI Summary:</strong></p>
+              <p class="text-muted">{{ r.summary }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/" class="btn btn-outline-primary">🔁 Try Again</a>
+    </div>
+  </div>
+</body>
+</html>
