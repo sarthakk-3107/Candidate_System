@@ -23,6 +23,3 @@ This project is a **Flask-based web application** that matches resumes to job de
 - **NLP**: Preprocessing using NLTK / spaCy (optional)
 
 ---
-
-## 📂 Project Structure
-
